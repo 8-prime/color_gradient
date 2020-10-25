@@ -3,18 +3,20 @@
 #include <vector>
 #include <cmath>
 #include <cstring>
+#include <random>
 
 
 int main(){
+    srand(time(NULL));
     //color on the right 
-    int r1;
-    int g1;
-    int b1 = 255;
+    int r1 = rand() % 255;
+    int g1 = rand() % 255;
+    int b1 = rand() % 255;
 
     //color on the left
-    int r2 = 255;
-    int g2;
-    int b2;
+    int r2 = rand() % 255;
+    int g2 = rand() % 255;
+    int b2 = rand() % 255;
 
     //the color the gradient currently has
     int cur = r2;
