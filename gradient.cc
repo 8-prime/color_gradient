@@ -29,9 +29,9 @@ int main(){
     int g2;
     int b2;
 
-    int cur = r1;
-    int cug = g1;
-    int cub = b1;
+    int cur = r2;
+    int cug = g2;
+    int cub = b2;
 
 
     float weight = 0.0;
@@ -39,7 +39,7 @@ int main(){
 
 
     //img.setpixel for changing pixel values
-    int img_width = 180;
+    int img_width = 2000;
     int img_height = 2000;
     EasyBMP::RGBColor col1 (r1,g1,b1);
     EasyBMP::RGBColor col2 (r2,g2,b2);
