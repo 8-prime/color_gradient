@@ -26,7 +26,6 @@ int main(){
     float weight = 0.0;
     float wi = 1.0/255.0;
 
-
     //setup for the image
     int img_width = 2000;
     int img_height = 2000;
