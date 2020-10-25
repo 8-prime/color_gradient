@@ -4,41 +4,30 @@
 #include <cmath>
 #include <cstring>
 
-    /*
-        To generate a gradient pick two starting colors. these are currently defined through
-        the variables r1..b1 and r2..b2. 
-        Then based on the width of the image and the colorspace(rbg with 8 bit) calculate
-        how many pixels shoudl be colored in the the color before moving on to the next color. 
-        The variable holding this information is incremented after each pass of n written rows
-        It is applied to all three color values r, g and b and these are saved in cu?
-
-
-        have to have the x value for the fomular saved as maybe weight in a float and incremented by 
-        1 / 255 as a float.
-
-        whith the weight then calculate the current color to be drawn for the stepsize of pixels and then 
-        with the next iteration increment the weight by 1/255 again.
-    */
 
 int main(){
+    //color on the right 
     int r1;
     int g1;
     int b1 = 255;
 
+    //color on the left
     int r2 = 255;
     int g2;
     int b2;
 
+    //the color the gradient currently has
     int cur = r2;
     int cug = g2;
     int cub = b2;
 
-
+    //the weight to caluclate the next color in the gradient with and the weight increment
+    //by which the weight gets increased
     float weight = 0.0;
     float wi = 1.0/255.0;
 
 
-    //img.setpixel for changing pixel values
+    //setup for the image
     int img_width = 2000;
     int img_height = 2000;
     EasyBMP::RGBColor col1 (r1,g1,b1);
@@ -46,9 +35,12 @@ int main(){
     EasyBMP::RGBColor mid (cur,cug,cub);
     EasyBMP::Image img(img_width,img_height, "gradient.bmp", col1);
 
+    //the x coordinate to change the pixel at
     int x = 0;
+    //the max amount of rows to be painted in the same color
     float max_step = float(img_width)/255.0;
     while(x < img_width){
+        //for the amount of steps color rows in the same color
         for (float stepsize = 0.0; stepsize < max_step; stepsize++) {
             //increment x value in here
             for (int y = 0; y < img_height; y++){
@@ -62,12 +54,8 @@ int main(){
         cur = weight * r1 + (1-weight) * r2;
         cug = weight * g1 + (1-weight) * g2;
         cub = weight * b1 + (1-weight) * b2;
-
         mid.SetColor(cur,cug,cub);
     }
-
-
-
-
+    //write the final image to file
     img.Write();
 }
