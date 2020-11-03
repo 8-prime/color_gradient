@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 
-int main(){
+void generateImage(){
     srand(time(NULL));
     //color on the right 
     int r1 = rand() % 255;
@@ -60,7 +60,6 @@ int main(){
     }
     //write the final image to file
     img.Write();
-
     //this part of the code will be related to opening the file for the user to see and admire
     int pid = fork();
     if(pid == 0){
@@ -68,4 +67,15 @@ int main(){
         execl("/usr/bin/xdg-open", "xdg-open", "gradient.bmp", (char *)0);
         exit(1);
     }
+}
+
+
+int main(){
+    generateImage();
+    std::string test;
+    std::getline(std::cin, test);
+    if(test == "next"){
+        main();
+    }
+    
 }
