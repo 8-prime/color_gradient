@@ -4,6 +4,7 @@
 #include <cmath>
 #include <cstring>
 #include <random>
+#include <unistd.h>
 
 
 int main(){
@@ -59,4 +60,12 @@ int main(){
     }
     //write the final image to file
     img.Write();
+
+    //this part of the code will be related to opening the file for the user to see and admire
+    int pid = fork();
+    if(pid == 0){
+        //im the child now
+        execl("/usr/bin/xdg-open", "xdg-open", "gradient.bmp", (char *)0);
+        exit(1);
+    }
 }
